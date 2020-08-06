@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        {% block head%}
+        <title>Gym Manager</title>
+        {% endblock%}
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+
+        <header class="links">
+            <div>
+                <a href="/">Members</a>
+                <a href="/Instructors" class="active">Instructors</a>
+            </div>
+        </header>
+
+        {% block content %}{% endblock %}
+
+        <footer class="links">
+            <div id="links-footer">
+                <a href="https://github.com/JoaoSouza0" target="_blank">GitHub</a>
+                <a href="https://www.linkedin.com/public-profile/settings?trk=d_flagship3_profile_self_view_public_profile" target="_blank">Linkedin</a>
+            </div>
+
+        </footer>
+    </div>
+
+</body>
+
+</html>
