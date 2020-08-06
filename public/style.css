@@ -1,5 +1,69 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,100;1,300;1,400;1,500&display=swap');
 
+
+*{
+    margin:0;
+    padding: 0;
+    border: none;
+    box-sizing: border-box;
+}
+
+
 body{
+    background-color: rgb(252, 252, 252);
     font-family: 'Roboto', sans-serif;
+    
+}
+:root{
+
+    --yellobase: rgb(255, 251, 0);
+
+
+}
+header{
+
+    background-color:var(--yellobase);
+    width: 100%;
+    padding:32px;
+    text-align: center;
+}
+
+.links{
+    font-size: 16px;
+}
+.links a +a { /*faz com que a propriedade seja colocada no "a" que 
+                tenha um outro "a" anterior a ele */
+
+    margin-left: 32px;
+
+}
+.links a{
+    text-decoration: none;
+    color:black;
+    position: relative;
+}
+
+.links a.active {
+    font-weight: bolder; 
+}
+.links a:hover{
+    color:black;
+}
+
+.links a::after{ /* adicionando um elemento via CSS */
+
+    content:"";
+    width: 0;
+    height: 2px;
+    background-color: black;
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+
+}
+
+.links a:hover::after{
+    width: 100%;
+    transition: width 300ms ease-in-out; 
+/*  transition: (A quem se aplica) (tempo) (fluides do efeitto)  */
 }
