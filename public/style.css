@@ -20,7 +20,7 @@ body{
 
 
 }
-header{
+header, footer{
 
     background-color:var(--yellobase);
     width: 100%;
@@ -66,4 +66,38 @@ header{
     width: 100%;
     transition: width 300ms ease-in-out; 
 /*  transition: (A quem se aplica) (tempo) (fluides do efeitto)  */
+}
+/* Card instructor */
+
+.card{
+    background-color: var(--yellobase);
+    width: 800px;
+    height: 400px;
+    margin: 45px auto;
+
+    /* grid ao meeio */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    /* sombra */
+    box-shadow: 0px 3px 6px -2px black; 
+
+    /* animação */
+    animation: up 700ms ease-out;
+
+}
+
+@keyframes up{
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(15px)
+
+    }to{
+
+        opacity: 1;
+
+    }
 }
