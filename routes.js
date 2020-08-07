@@ -11,4 +11,13 @@ routes.get('/Instructors', (req, res) => {
     return res.render('Instructors/index')
 })
 
+routes.post('/Instructors',(req,res)=>{
+
+    return res.send('recebido')
+})
+
+routes.get('/Instructors/create', (req, res) => {
+    return res.render('Instructors/create')
+})
+
 module.exports = routes
