@@ -16,13 +16,14 @@ body{
 }
 :root{
 
-    --yellobase: rgb(255, 251, 0);
+    --primary-color:#e0b12d;
+    --second-color: #5c5c5a;
 
 
 }
 header, footer{
 
-    background-color:var(--yellobase);
+    background-color:var(--primary-color);
     width: 100%;
     padding:32px;
     text-align: center;
@@ -70,9 +71,9 @@ header, footer{
 /* Card instructor */
 
 .card{
-    background-color: var(--yellobase);
+    background-color: var(--primary-color);
     width: 800px;
-    height: 400px;
+    min-height: 400px;
     margin: 45px auto;
 
     /* grid ao meeio */
@@ -100,4 +101,68 @@ header, footer{
         opacity: 1;
 
     }
+}
+
+.details{
+
+    padding: 35px;
+}
+
+.details .item{
+    color:rgb(70, 65, 65);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.10);
+    padding: 15px 0;
+
+}
+.details .item:last-child{/*  aplicando no ultimo item com a clase "item" */
+    border: none;
+}
+
+.details .item div:nth-child(1){ /* aplicando na primeira div dentro da clase "item" */
+    color: black;
+    line-height: 18px;
+    letter-spacing: 0.7;
+    font-weight: normal;
+}
+
+.details .item div:nth-child(2){ /* aplicando na primeira div dentro da clase "item" */
+    font-size: 18px;
+}
+
+.details h3{
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.details ul{
+margin-left: 30px;
+}
+
+/* FORM */
+
+form input{
+    width: 100%;
+    outline: none;
+    background-color: var(--primary-color);
+    color: black;
+    line-height: 18px;
+    letter-spacing: 0.7;
+    font-size: 16px;
+    font-weight: normal;
+
+}
+
+input[type="radio"]{
+    width: initial;
+  
+}
+
+form button[type="submit"]{
+    margin-top: 32px;
+    padding: 8px 32px;
+    width: 100%;
+    background-color:var(--second-color);
+    border-radius: 5px;
+    color: var(--primary-color);
+
 }
