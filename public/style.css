@@ -157,12 +157,21 @@ input[type="radio"]{
   
 }
 
-form button[type="submit"]{
+form button[type="submit"],
+a.button{
     margin-top: 32px;
     padding: 8px 32px;
     width: 100%;
     background-color:var(--second-color);
     border-radius: 5px;
     color: var(--primary-color);
+
+}
+
+a.button{
+
+    display:block;
+    text-align: center;
+    text-decoration: none;
 
 }
