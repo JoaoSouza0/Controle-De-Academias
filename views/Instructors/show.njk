@@ -1,0 +1,45 @@
+{% extends 'layOut.njk' %}
+
+{% block content %}
+
+    <div class="card">
+        <section class="image" style="background: url({{infos.avatarUrl}}) no-repeat center center / cover"></section>
+        <section class="details">
+            <h3>Detalhes</h3>
+
+            <div class="item">
+                <div>
+                    Instrutor</div>
+                <div>{{infos.nomeInstrutor}}</div>
+            </div>
+            <div class="item">
+                <div>Idade</div>
+                <div>{{infos.age}}</div>
+            </div>
+            <div class="item">
+                <div>Sexo</div>
+                <div>{{'Masculino' if infos.gender == 'M' else 'Feminino'}}</div>
+            </div>
+            <div class="item">
+                <div>Acompanhamento</div>
+                <div>
+                    <ul>
+                        {% for services in infos.services %}
+                            <li>
+                                <span>{{services}}</span>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div class="item">
+                <div>Desde</div>
+                <div>{{infos.create_at}}</div>
+            </div>
+
+            <a href="#" class="button">Edição</a>
+
+        </section>
+    </div>
+
+{% endblock content %}
