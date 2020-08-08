@@ -1,7 +1,32 @@
 const fs = require('fs') //chamando filse server (fs) para conseguir manipular arquivos 
 const data = require('../data.json')
+const {calcularIdade} = require('../logic/logic')
+
+//SHOW
+
+exports.show = (req, res) => {
+
+    const { id } = req.params
+
+    const encontrarEstrutor = data.instructors.find(function (instructor) {
+        return id == instructor.id
+    })
+
+    if (!encontrarEstrutor) return res.send('Não encontrei')
+
+
+    const intrutores = {
+        ...encontrarEstrutor,
+        age: calcularIdade(encontrarEstrutor.dataNascimento),
+        services: encontrarEstrutor.services.split(','),
+        create_at: new Intl.DateTimeFormat('en-GB').format(encontrarEstrutor.create_at)
+    }
+
+    return res.render('../views/Instructors/show', { infos: intrutores })
+}
+
 //POST
-module.exports = (req, res) => {
+exports.post = (req, res) => {
 
     const keys = Object.keys(req.body) // pegando as chaves dos itens
     // E fazendo 1 array com elas 
