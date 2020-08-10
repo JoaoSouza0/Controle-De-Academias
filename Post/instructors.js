@@ -42,7 +42,7 @@ exports.edit = (req, res) => {
 
     instructors = {
         ...encontrarEstrutor,
-        dataNascimento: calcularData( encontrarEstrutor.dataNascimento)
+        dataNascimento: calcularData(encontrarEstrutor.dataNascimento)
 
     }
 
@@ -88,6 +88,37 @@ exports.post = (req, res) => {
         }
 
         return res.redirect('/Instructors')//caso de sucesso redirecionar. 
+    })
+
+}
+
+//ATUALIZAR
+
+exports.put = (req, res) => {
+    const { id } = req.body // pegando o parametro id
+
+    const encontrarEstrutor = data.instructors.find(function (instructor) { //função que vai validar o instrutor   
+        // função find para percoorer os dados a procura dele
+        return id == instructor.id//validando se é o id certo passado no parametro a cima
+
+
+    })
+
+    if (!encontrarEstrutor) return res.send('Não encontrei') //caso não encontre
+
+    const instructor = {
+
+        ...encontrarEstrutor,
+        ...req.body,
+        dataNascimento: Date.parse(req.body.dataNascimento)
+    }
+    
+    data.instructors[id - 1] = instructor
+
+    fs.writeFile('data.json', JSON.stringify(data,null, 2), (err)=>{
+        if (err) return res.send('Write error bro')
+
+        return res.redirect(`/instructors/${id}`)
     })
 
 }
