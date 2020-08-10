@@ -1,28 +1,52 @@
 const fs = require('fs') //chamando filse server (fs) para conseguir manipular arquivos 
 const data = require('../data.json')
-const {calcularIdade} = require('../logic/logic')
+const { calcularIdade, calcularData } = require('../logic/logic')
 
 //SHOW
 
-exports.show = (req, res) => {
+exports.show = (req, res) => { // criando rota para mostras as infos
 
-    const { id } = req.params
+    const { id } = req.params // pegando o parametro id
 
-    const encontrarEstrutor = data.instructors.find(function (instructor) {
-        return id == instructor.id
+    const encontrarEstrutor = data.instructors.find(function (instructor) { //função que vai validar o instrutor   
+        // função find para percoorer os dados a procura dele
+        return id == instructor.id//validando se é o id certo passado no parametro a cima
     })
 
-    if (!encontrarEstrutor) return res.send('Não encontrei')
-
+    if (!encontrarEstrutor) return res.send('Não encontrei') //caso não encontre
 
     const intrutores = {
-        ...encontrarEstrutor,
-        age: calcularIdade(encontrarEstrutor.dataNascimento),
-        services: encontrarEstrutor.services.split(','),
-        create_at: new Intl.DateTimeFormat('en-GB').format(encontrarEstrutor.create_at)
+        ...encontrarEstrutor, // espaçando o array
+        age: calcularIdade(encontrarEstrutor.dataNascimento), // formatando a idade com base na data de nascimento
+        services: encontrarEstrutor.services.split(','), // criando um array
+        create_at: new Intl.DateTimeFormat('en-GB').format(encontrarEstrutor.create_at) //formatando o criado quando
     }
 
     return res.render('../views/Instructors/show', { infos: intrutores })
+}
+
+//Create
+
+exports.edit = (req, res) => {
+
+    const { id } = req.params // pegando o parametro id
+
+    const encontrarEstrutor = data.instructors.find(function (instructor) { //função que vai validar o instrutor   
+        // função find para percoorer os dados a procura dele
+        return id == instructor.id//validando se é o id certo passado no parametro a cima
+
+
+    })
+
+    if (!encontrarEstrutor) return res.send('Não encontrei') //caso não encontre
+
+    instructors = {
+        ...encontrarEstrutor,
+        dataNascimento: calcularData( encontrarEstrutor.dataNascimento)
+
+    }
+
+    return res.render('Instructors/edit', { instrutor: instructors }) //passando esse array para a pagina
 }
 
 //POST
