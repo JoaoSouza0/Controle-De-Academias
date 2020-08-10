@@ -21,6 +21,8 @@ routes.get('/Instructors/:id/Edit',instructors.edit)
 
 routes.post('/Instructors',instructors.post)
 
+routes.put('/Instructors/', instructors.put)
+
 
 
 module.exports = routes
