@@ -165,6 +165,7 @@ a.button{
     background-color:var(--second-color);
     border-radius: 5px;
     color: var(--primary-color);
+    cursor: pointer;
 
 }
 
@@ -174,4 +175,11 @@ a.button{
     text-align: center;
     text-decoration: none;
 
+}
+
+#form-delete button{
+
+    background-color: white;
+    margin-top: 16px;
+    color: black;
 }
