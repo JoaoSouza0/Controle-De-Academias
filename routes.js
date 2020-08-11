@@ -8,9 +8,8 @@ routes.get('/', (req, res) => {
 routes.get('/Members', (req, res) => {
     return res.render('Members/index')
 })
-routes.get('/Instructors', (req, res) => {
-    return res.render('Instructors/index')
-})
+routes.get('/Instructors', instructors.index )
+
 routes.get('/Instructors/create', (req, res) => {
     return res.render('Instructors/create')
 })

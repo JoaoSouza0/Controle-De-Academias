@@ -73,7 +73,7 @@ header, footer{
 .card{
     background-color: var(--primary-color);
     width: 800px;
-    min-height: 400px;
+    min-height: 500px;
     margin: 45px auto;
 
     /* grid ao meeio */
@@ -182,4 +182,63 @@ a.button{
     background-color: white;
     margin-top: 16px;
     color: black;
+}
+
+.table{
+    display: block;
+    padding: 40px;
+    box-sizing: border-box;
+
+}
+
+.table table{
+
+    border-spacing: 0;
+}
+
+.table thead tr th{
+
+    text-align: left;
+}
+
+td, th{
+    padding: 16px;
+    border-bottom: 1px solid white;
+}
+
+th {
+    text-transform: uppercase;
+    color: var(--second-color);
+}
+
+tbody tr:last-child td{
+
+    border:none;
+}
+
+tbody tr td:first-child{
+    display: flex;
+    align-items: center;
+ 
+}
+
+tbody tr td:first-child span{
+    margin-right: 10px;
+    width: 48px;
+    height: 48px;
+    background-position: center;
+    background-size: cover;
+    border-radius: 50%;
+    box-shadow: 3px 1px 6px -4px black;
+    border: 2px solid white ;
+}
+
+tbody tr td:last-child a{
+
+    background-color: var(--second-color);
+    padding: 8px 16px;
+    text-decoration: none;
+    color: var(--primary-color);
+    border-radius:10px ;
+
 }

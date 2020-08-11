@@ -2,6 +2,14 @@ const fs = require('fs') //chamando filse server (fs) para conseguir manipular a
 const data = require('../data.json')
 const { calcularIdade, calcularData } = require('../logic/logic')
 
+
+//INDEX
+
+exports.index = (req, res) => {
+
+    return res.render('Instructors/index', { instructors: data.instructors })
+}
+
 //SHOW
 
 exports.show = (req, res) => { // criando rota para mostras as infos
@@ -96,11 +104,15 @@ exports.post = (req, res) => {
 
 exports.put = (req, res) => {
     const { id } = req.body // pegando o parametro id
+    let index = 0
 
-    const encontrarEstrutor = data.instructors.find(function (instructor) { //função que vai validar o instrutor   
+    const encontrarEstrutor = data.instructors.find(function (instructor, foundIndex) { //função que vai validar o instrutor   
         // função find para percoorer os dados a procura dele
-        return id == instructor.id//validando se é o id certo passado no parametro a cima
-
+        if (id == instructor.id)//validando se é o id certo passado no parametro a cima
+        {
+            index = foundIndex
+            return true
+        }
     })
 
     if (!encontrarEstrutor) return res.send('Não encontrei') //caso não encontre
@@ -109,10 +121,11 @@ exports.put = (req, res) => {
 
         ...encontrarEstrutor,
         ...req.body,
-        dataNascimento: Date.parse(req.body.dataNascimento)
+        dataNascimento: Date.parse(req.body.dataNascimento),
+        id: Number(req.body.id)
     }
 
-    data.instructors[id - 1] = instructor
+    data.instructors[index] = instructor
 
     fs.writeFile('data.json', JSON.stringify(data, null, 2), (err) => {
         if (err) return res.send('Write error bro')
@@ -134,9 +147,9 @@ exports.delete = (req, res) => {
 
     data.instructors = filterInstrutor
 
-    fs.writeFile('data.json', JSON.stringify(data, null, 2), (err)=>{
+    fs.writeFile('data.json', JSON.stringify(data, null, 2), (err) => {
 
-        if(err) return res.send("Write file error")
+        if (err) return res.send("Write file error")
 
         return res.redirect('/Instructors')
     })
