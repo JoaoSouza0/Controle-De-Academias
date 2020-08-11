@@ -101,7 +101,6 @@ exports.put = (req, res) => {
         // função find para percoorer os dados a procura dele
         return id == instructor.id//validando se é o id certo passado no parametro a cima
 
-
     })
 
     if (!encontrarEstrutor) return res.send('Não encontrei') //caso não encontre
@@ -112,13 +111,34 @@ exports.put = (req, res) => {
         ...req.body,
         dataNascimento: Date.parse(req.body.dataNascimento)
     }
-    
+
     data.instructors[id - 1] = instructor
 
-    fs.writeFile('data.json', JSON.stringify(data,null, 2), (err)=>{
+    fs.writeFile('data.json', JSON.stringify(data, null, 2), (err) => {
         if (err) return res.send('Write error bro')
 
         return res.redirect(`/instructors/${id}`)
+    })
+
+}
+
+//DELETAR 
+
+exports.delete = (req, res) => {
+
+    const { id } = req.body
+
+    const filterInstrutor = data.instructors.filter((instrutor) => {
+        return instrutor.id != id
+    })
+
+    data.instructors = filterInstrutor
+
+    fs.writeFile('data.json', JSON.stringify(data, null, 2), (err)=>{
+
+        if(err) return res.send("Write file error")
+
+        return res.redirect('/Instructors')
     })
 
 }

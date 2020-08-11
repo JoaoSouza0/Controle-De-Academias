@@ -2,14 +2,31 @@
 
 {% block content %}
 
-    <form class="card" method="POST" action="/Instructors?_method=PUT">
+    <div class="card">
         <section class="image" style="background: url(https://source.unsplash.com/collection/1647783/500x500) no-repeat center center / cover"></section>
+ 
         <section class="details">
-            <h3>Edição de instrutores</h3>
+        
+            <form method="POST" action="/Instructors?_method=PUT">
+
+                <h3>Edição de instrutores</h3>
+
                 {%include 'Instructors/form.njk'%}
 
-        <input type="hidden" name="id" value={{instrutor.id}}>
+                <input type="hidden" name="id" value={{instrutor.id}}>
+
+            </form>
+
+            <form id="form-delete" action="/Instructors?_method=DELETE" method="post">
+
+                <input type="hidden" name="id" value={{instrutor.id}}>
+
+                <button type="submit">Deletar</button>
+
+            </form>
+            
         </section>
-    </form>
+
+    </div>
 
 {% endblock content %}
