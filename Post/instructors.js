@@ -1,6 +1,6 @@
 const fs = require('fs') //chamando filse server (fs) para conseguir manipular arquivos 
 const data = require('../data.json')
-const { calcularIdade, calcularData } = require('../logic/logic')
+const { calcularIdade, calcularData, searchInstructor } = require('../logic/logic')
 
 
 //INDEX
@@ -22,12 +22,9 @@ exports.show = (req, res) => { // criando rota para mostras as infos
 
     const { id } = req.params // pegando o parametro id
 
-    const encontrarEstrutor = data.instructors.find(function (instructor) { //função que vai validar o instrutor   
-        // função find para percoorer os dados a procura dele
-        return id == instructor.id//validando se é o id certo passado no parametro a cima
-    })
-
-    if (!encontrarEstrutor) return res.send('Não encontrei') //caso não encontre
+    let results = searchInstructor(id, res)
+    
+    const { encontrarEstrutor } = results
 
     const intrutores = {
         ...encontrarEstrutor, // espaçando o array
@@ -45,14 +42,9 @@ exports.edit = (req, res) => {
 
     const { id } = req.params // pegando o parametro id
 
-    const encontrarEstrutor = data.instructors.find(function (instructor) { //função que vai validar o instrutor   
-        // função find para percoorer os dados a procura dele
-        return id == instructor.id//validando se é o id certo passado no parametro a cima
+    let results = searchInstructor(id, res)
 
-
-    })
-
-    if (!encontrarEstrutor) return res.send('Não encontrei') //caso não encontre
+    const { encontrarEstrutor } = results
 
     instructors = {
         ...encontrarEstrutor,
@@ -110,18 +102,10 @@ exports.post = (req, res) => {
 
 exports.put = (req, res) => {
     const { id } = req.body // pegando o parametro id
-    let index = 0
 
-    const encontrarEstrutor = data.instructors.find(function (instructor, foundIndex) { //função que vai validar o instrutor   
-        // função find para percoorer os dados a procura dele
-        if (id == instructor.id)//validando se é o id certo passado no parametro a cima
-        {
-            index = foundIndex
-            return true
-        }
-    })
+    let results = searchInstructor(id, res)
 
-    if (!encontrarEstrutor) return res.send('Não encontrei') //caso não encontre
+    const { encontrarEstrutor, index } = results
 
     const instructor = {
 

@@ -1,6 +1,6 @@
 const fs = require('fs') //chamando filse server (fs) para conseguir manipular arquivos 
 const data = require('../data.json')
-const { calcularIdade, calcularData } = require('../logic/logic')
+const { calcularData, searchMembers } = require('../logic/logic')
 
 
 //INDEX
@@ -22,12 +22,9 @@ exports.show = (req, res) => { // criando rota para mostras as infos
 
     const { id } = req.params // pegando o parametro id
 
-    const searchMember = data.members.find(function (member) { //função que vai validar o    
-        // função find para percoorer os dados a procura dele
-        return id == member.id//validando se é o id certo passado no parametro a cima
-    })
+    let results = searchMembers(id, res)
 
-    if (!searchMember) return res.send('Não encontrei') //caso não encontre
+    const {searchMember} = results
 
     const members = {
         ...searchMember, // espaçando o array
@@ -44,14 +41,9 @@ exports.edit = (req, res) => {
 
     const { id } = req.params // pegando o parametro id
 
-    const searchMember = data.members.find(function (member) { //função que vai validar o    
-        // função find para percoorer os dados a procura dele
-        return id == member.id//validando se é o id certo passado no parametro a cima
+    let results = searchMembers(id, res)
 
-
-    })
-
-    if (!searchMember) return res.send('Não encontrei') //caso não encontre
+    const {searchMember} = results
 
     members = {
         ...searchMember,
@@ -110,18 +102,10 @@ exports.post = (req, res) => {
 
 exports.put = (req, res) => {
     const { id } = req.body // pegando o parametro id
-    let index = 0
 
-    const searchMember = data.members.find(function (member, foundIndex) { //função que vai validar o    
-        // função find para percoorer os dados a procura dele
-        if (id == member.id)//validando se é o id certo passado no parametro a cima
-        {
-            index = foundIndex
-            return true
-        }
-    })
+    let results = searchMembers(id, res)
 
-    if (!searchMember) return res.send('Não encontrei') //caso não encontre
+    const {searchMember, index} = results
 
     const member = {
 
