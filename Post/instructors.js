@@ -10,6 +10,12 @@ exports.index = (req, res) => {
     return res.render('Instructors/index', { instructors: data.instructors })
 }
 
+//CREATE
+
+exports.create = (req, res) => {
+    return res.render('Instructors/create')
+}
+
 //SHOW
 
 exports.show = (req, res) => { // criando rota para mostras as infos
@@ -50,7 +56,7 @@ exports.edit = (req, res) => {
 
     instructors = {
         ...encontrarEstrutor,
-        dataNascimento: calcularData(encontrarEstrutor.dataNascimento)
+        dataNascimento: calcularData(encontrarEstrutor.dataNascimento).iso
 
     }
 

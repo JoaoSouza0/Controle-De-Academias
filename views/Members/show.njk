@@ -1,0 +1,49 @@
+{% extends 'layOut.njk' %}
+
+{% block content %}
+
+    <div class="card">
+        <section class="image" style="background: url({{infos.avatarUrl}}) no-repeat center center / cover"></section>
+        <section class="details">
+            <h3>Detalhes</h3>
+
+            <div class="item">
+                <div>
+                    Nome do membro</div>
+                <div>{{infos.nome}}</div>
+            </div>
+             <div class="item">
+                <div>E-mail</div>
+                <div>{{infos.email}}</div>
+            </div>
+
+            <div class="item">
+                <div>Aniversario</div>
+                <div>{{infos.dataNascimento}}</div>
+            </div>
+            <div class="item">
+                <div>Sexo</div>
+                <div>{{'Masculino' if infos.gender == 'M' else 'Feminino'}}</div>
+            </div>
+          
+           
+            <div class="item">
+                <div>Tipo sanguineo</div>
+                <div>{{infos.blood}}</div>
+            </div>
+            <div class="item">
+                <div>Peso (KG)</div>
+                <div>{{infos.weight}}</div>
+            </div>
+            <div class="item">
+                <div>Altura</div>
+                <div>{{infos.height}}</div>
+            </div>
+            
+
+            <a href="/members/{{infos.id}}/edit" class="button">Edição</a>
+
+        </section>
+    </div>
+
+{% endblock content %}

@@ -2,6 +2,58 @@
 
 {% block content %}
 
-Members
+    <div class="card table">
+        <table width="100%">
+            <a href="/members/create">Novo</a>
 
-{% endblock content %}
+            <thead>
+                <tr>
+                    <th>
+                        Nome
+                    </th>
+                    <th>
+                        E-mail
+                    </th>
+                    <th>
+                        Peso
+                    </th>
+                    </th>
+                    <th>
+                        altura
+                    </th>
+                    <th>
+                        Ação
+                    </th>
+                </tr>
+
+            </thead>
+            <tbody>
+
+                {% for member in members %}
+                    <tr>
+                        
+                        <td>
+                            <span style="background-image: url({{member.avatarUrl}})"></span>
+                            {{member.nome}}
+                        </td>
+
+                        <td>
+                             {{member.email}}
+                        </td>
+                        <td>
+                             {{member.weight}}kg
+                        </td>
+                        <td>
+                             {{member.height}}cm    
+                        </td>
+                        <td>
+                                <a href="/members/{{member.id}}">Ver</a>
+                        </td>
+                    </tr>
+                    {%endfor%}
+
+                </tbody>
+            </table>
+        </div>
+
+    {% endblock content %}
