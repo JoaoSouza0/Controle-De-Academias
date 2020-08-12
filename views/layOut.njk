@@ -3,31 +3,32 @@
 
     <head>
         {% block head%}
-        <title>Gym Manager</title>
-        {% endblock%}
-        <link rel="stylesheet" href="/style.css">
-    </head>
+            <title>Gym Manager</title>
+            {% endblock%}
+            <link rel="stylesheet" href="/style.css">
+        </head>
 
-    <body>
+        <body>
 
-        <header class="links">
-            <div>
-                <a href="/">Members</a>
-                <a href="/Instructors" class="active">Instructors</a>
-            </div>
-        </header>
+            <header class="links">
+                <div>
+                    <a href="/Instructors">Instructors</a>
+                    <a href="/members">Members</a>
+                </div>
+            </header>
 
-        {% block content %}{% endblock %}
+            {% block content %}{% endblock %}
 
-        <footer class="links">
-            <div>
-                <a href="https://github.com/JoaoSouza0" target="_blank">GitHub</a>
-                <a href="https://www.linkedin.com/public-profile/settings?trk=d_flagship3_profile_self_view_public_profile" target="_blank">Linkedin</a>
-            </div>
+            <footer class="links">
+                <div>
+                    <a href="https://github.com/JoaoSouza0" target="_blank">GitHub</a>
+                    <a href="https://www.linkedin.com/in/joão-victor-costa-souza-3994b4147" target="_blank">Linkedin</a>
+                </div>
 
-        </footer>
-    </div>
+            </footer>
+        </div>
 
-</body>
+        <script src="/script.js"></script>
+    </body>
 
 </html>
