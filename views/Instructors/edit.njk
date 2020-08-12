@@ -3,7 +3,7 @@
 {% block content %}
 
     <div class="card">
-        <section class="image" style="background: url(https://source.unsplash.com/collection/1647783/500x500) no-repeat center center / cover"></section>
+        <section class="image" style="background: url({{instrutor.avatarUrl}}) no-repeat center center / cover"></section>
  
         <section class="details">
         
@@ -28,5 +28,6 @@
         </section>
 
     </div>
+    {%include '../script.njk'%}
 
 {% endblock content %}
