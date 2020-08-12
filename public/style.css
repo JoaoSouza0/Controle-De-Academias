@@ -45,8 +45,8 @@ header, footer{
 }
 
 .links a.active {
-    font-weight: bolder; 
-}
+    color: white;
+    }
 .links a:hover{
     color:black;
 }
@@ -140,7 +140,7 @@ margin-left: 30px;
 
 /* FORM */
 
-form input{
+form input,select{
     width: 100%;
     outline: none;
     background-color: var(--primary-color);
@@ -233,12 +233,22 @@ tbody tr td:first-child span{
     border: 2px solid white ;
 }
 
-tbody tr td:last-child a{
-
+tbody tr td:last-child a,
+.table > a{
     background-color: var(--second-color);
     padding: 8px 16px;
     text-decoration: none;
     color: var(--primary-color);
     border-radius:10px ;
+
+}
+tbody tr td:last-child a:hover,
+.table > a:hover{
+    color: white;
+}
+
+.table > a{
+    margin-bottom: 16px;
+    display: inline-block
 
 }
