@@ -2,7 +2,7 @@ const data = require('../data.json')
 
 module.exports = {
 
-    calcularIdade: function (timestamp) {
+    calcularIdade(timestamp) {
         const today = new Date
         const dataNascimento = new Date(timestamp)
 
@@ -14,7 +14,7 @@ module.exports = {
         }
         return age
     },
-    calcularData: function (timestamp) {
+    calcularData(timestamp) {
         const date = new Date(timestamp)
 
         const year = date.getUTCFullYear()
