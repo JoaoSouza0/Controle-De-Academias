@@ -37,6 +37,7 @@
 </div>
 
 <div class="item">
+    <div> Tipo sanguineo</div>
 
     <select name="blood" id="">
 
@@ -66,6 +67,19 @@
     <div>
         <input type="number" name="height" value="{{member.height}}">
     </div>
+</div>
+
+<div class="item">
+    <div> Instrutor</div>
+    <select name="instructors">
+
+        {% for instructors in instructorOptions %}
+        <option value="{{instructors.id}}" {%if member.instructors == "{{instructors.id}}"%} selected {%endif%}> 
+            {{instructors.name}}
+        </option>
+        {%endfor%}
+        
+    </select>
 </div>
 
 <button type="submit">Salvar</button>
