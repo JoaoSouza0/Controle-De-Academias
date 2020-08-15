@@ -3,28 +3,28 @@
 {% block content %}
 
     <div class="card">
-        <section class="image" style="background: url({{infos.avatarUrl}}) no-repeat center center / cover"></section>
+        <section class="image" style="background: url({{instructor.avatarurl}}) no-repeat center center / cover"></section>
         <section class="details">
             <h3>Detalhes</h3>
 
             <div class="item">
                 <div>
                     Instrutor</div>
-                <div>{{infos.nomeInstrutor}}</div>
+                <div>{{instructor.name}}</div>
             </div>
             <div class="item">
                 <div>Idade</div>
-                <div>{{infos.age}}</div>
+                <div>{{instructor.age}}</div>
             </div>
             <div class="item">
                 <div>Sexo</div>
-                <div>{{'Masculino' if infos.gender == 'M' else 'Feminino'}}</div>
+                <div>{{'Masculino' if instructor.gender == 'M' else 'Feminino'}}</div>
             </div>
             <div class="item">
                 <div>Acompanhamento</div>
                 <div>
                     <ul>
-                        {% for services in infos.services %}
+                        {% for services in instructor.services %}
                             <li>
                                 <span>{{services}}</span>
                             </li>
@@ -34,10 +34,10 @@
             </div>
             <div class="item">
                 <div>Desde</div>
-                <div>{{infos.create_at}}</div>
+                <div>{{instructor.created_at}}</div>
             </div>
 
-            <a href="/Instructors/{{infos.id}}/edit" class="button">Edição</a>
+            <a href="/Instructors/{{instructor.id}}/edit" class="button">Edição</a>
 
         </section>
     </div>

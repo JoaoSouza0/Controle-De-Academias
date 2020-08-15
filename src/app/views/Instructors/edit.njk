@@ -3,7 +3,7 @@
 {% block content %}
 
     <div class="card">
-        <section class="image" style="background: url({{instrutor.avatarUrl}}) no-repeat center center / cover"></section>
+        <section class="image" style="background: url({{instructor.avatarurl}}) no-repeat center center / cover"></section>
  
         <section class="details">
         
@@ -13,13 +13,13 @@
 
                 {%include 'Instructors/form.njk'%}
 
-                <input type="hidden" name="id" value={{instrutor.id}}>
+                <input type="hidden" name="id" value={{instructor.id}}>
 
             </form>
 
             <form id="form-delete" action="/Instructors?_method=DELETE" method="post">
 
-                <input type="hidden" name="id" value={{instrutor.id}}>
+                <input type="hidden" name="id" value={{instructor.id}}>
 
                 <button type="submit">Deletar</button>
 

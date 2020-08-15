@@ -1,37 +1,37 @@
 
             <div class="item">
-                <div>Instrutor</div>
+                <div>instructor</div>
                 <div>
-                    <input type="URL" name="avatarUrl" placeholder="http://" value= "{{instrutor.avatarUrl}}">
+                    <input type="URL" name="avatarUrl" placeholder="http://" value= "{{instructor.avatarurl}}">
                 </div>
             </div>
  
             <div class="item">
                 <div>
-                    Instrutor</div>
+                    instructor</div>
                 <div>
-                    <input type="text" name="nomeInstrutor" placeholder="Nome:" value="{{instrutor.nomeInstrutor}}">
+                    <input type="text" name="nomeInstructor" placeholder="Nome:" value="{{instructor.name}}">
                 </div>
             </div>
             <div class="item">
                 <div>Data de Nascimento</div>
                 <div>
-                    <input type="date" name="dataNascimento" value="{{instrutor.dataNascimento}}">
+                    <input type="date" name="dataNascimento" value="{{instructor.datanascimento}}">
                 </div>
             </div>
             <div class="item">
                 <div>Sexo</div>
                 <div>
-                    <input type="radio" name="gender" value="M" {% if instrutor.gender =='M' %} checked
+                    <input type="radio" name="gender" value="M" {% if instructor.gender =='M' %} checked
                     {% endif %} >Masculino
-                    <input type="radio" name="gender" value="F" {% if instrutor.gender =='F' %} checked
+                    <input type="radio" name="gender" value="F" {% if instructor.gender =='F' %} checked
                     {% endif %}>Feminino
                 </div>
             </div>
             <div class="item">
                 <div>Area de Atuação</div>
                 <div>
-                    <input type="text" name="services" placeholder="Separe os serviços prestados por virgula" value="{{instrutor.services}}" >
+                    <input type="text" name="services" placeholder="Separe os serviços prestados por virgula" value="{{instructor.services}}" >
                 </div>
             </div>
             
