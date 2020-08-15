@@ -7,7 +7,7 @@ module.exports = {
 
     findAll(callBack) {
 
-        db.query('SELECT * FROM INSTRUCTORS', (err, results) => {
+        db.query('SELECT * FROM INSTRUCTORS ORDER BY name ASC', (err, results) => {
 
             if (err) {
                 throw (err)
