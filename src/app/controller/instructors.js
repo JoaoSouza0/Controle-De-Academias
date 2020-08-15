@@ -1,13 +1,18 @@
 const { calcularIdade, calcularData, searchInstructor } = require('../../lib/logic')
+const instructor = require('../models/instructor')
 
 //INDEX 
 
 module.exports = {
 
     index(req, res) {
-        return res.render('Instructors/index', { instructors })
+
+        instructor.findAll((instructors) => {
+            return res.render('instructors/index', { instructors })
+        })
 
     },
+
     create(req, res) {
 
         return res.render('Instructors/create')
@@ -26,19 +31,50 @@ module.exports = {
                 return res.send('Por favor preencher todos os itens')
         }
 
-        let { avatarUrl, nomeInstrutor, dataNascimento, gender, services } = req.body
-        return
+        let { avatarUrl, nomeInstructor, dataNascimento, gender, services } = req.body
+
+
+        const values = [
+            nomeInstructor,
+            avatarUrl,
+            calcularData(dataNascimento).iso,
+            gender,
+            calcularData(Date.now()).iso,
+            services
+
+        ]
+
+        instructor.post(values, (instructor) => {
+            return res.redirect(`instructors/${instructor.id}`)
+        })
 
     },
-
     show(req, res) {
 
-        return
+        instructor.find(req.params.id, (instructor) => {
+
+            if (!instructor) return res.send('Instructor not find')
+
+            instructor.age = calcularIdade(instructor.datanascimento)
+            instructor.services = instructor.services.split(',')
+            instructor.created_at = calcularData(instructor.created_at).br
+
+            return res.render('Instructors/show', { instructor })
+        })
 
     },
 
     edit(req, res) {
-        return
+        instructor.find(req.params.id, (instructor) => {
+
+            if (!instructor) return res.send('Instructor not find')
+
+            instructor.datanascimento = calcularData(instructor.datanascimento).iso
+            instructor.services = instructor.services.split(',')
+            instructor.created_at = calcularData(instructor.created_at).br
+
+            return res.render('Instructors/edit', { instructor })
+        })
     },
 
     put(req, res) {
@@ -54,12 +90,21 @@ module.exports = {
             if (keyisNull)
                 return res.send('Por favor preencher todos os itens')
         }
-        return
+
+
+        instructor.update(req.body, () => {
+
+            return res.redirect(`Instructors/${req.body.id}`)
+        })
+
+
 
     },
 
     delete(req, res) {
-        return
+        instructor.delete(req.body.id, () => {
 
+            return res.redirect(`/Instructors`)
+        })
     }
 }
