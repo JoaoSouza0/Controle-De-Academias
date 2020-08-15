@@ -1,4 +1,3 @@
-const data = require('../data.json')
 
 module.exports = {
 
@@ -19,11 +18,12 @@ module.exports = {
 
         const year = date.getUTCFullYear()
         const month = `0${date.getUTCMonth() + 1.}`.slice(-2)
-        const Day = `0${date.getUTCDate()}`.slice(-2)
+        const day = `0${date.getUTCDate()}`.slice(-2)
 
         return {
-            birthDay: `${Day}/${month}`,
-            iso: `${year}-${month}-${Day}`
+            birthDay: `${day}/${month}`,
+            iso: `${year}-${month}-${day}`,
+            br: `${day} / ${month} / ${year}`
         }
     },
     searchInstructor(id, res) {
