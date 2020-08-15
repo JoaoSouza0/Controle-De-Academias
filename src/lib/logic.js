@@ -1,8 +1,7 @@
-const data = require('../data.json')
 
 module.exports = {
 
-    calcularIdade: function (timestamp) {
+    calcularIdade(timestamp) {
         const today = new Date
         const dataNascimento = new Date(timestamp)
 
@@ -14,16 +13,17 @@ module.exports = {
         }
         return age
     },
-    calcularData: function (timestamp) {
+    calcularData(timestamp) {
         const date = new Date(timestamp)
 
         const year = date.getUTCFullYear()
         const month = `0${date.getUTCMonth() + 1.}`.slice(-2)
-        const Day = `0${date.getUTCDate()}`.slice(-2)
+        const day = `0${date.getUTCDate()}`.slice(-2)
 
         return {
-            birthDay: `${Day}/${month}`,
-            iso: `${year}-${month}-${Day}`
+            birthDay: `${day}/${month}`,
+            iso: `${year}-${month}-${day}`,
+            br: `${day} / ${month} / ${year}`
         }
     },
     searchInstructor(id, res) {

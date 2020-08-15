@@ -12,7 +12,7 @@ server.use(methodOverride('_method'))
 server.use(routes) // Criando rotas
 server.set('view engine', 'njk') //Configurando a view engine
 
-nunjucks.configure('views', {
+nunjucks.configure('src/app/views', {
     express: server,
     autoescape: false,
     noCache: true
