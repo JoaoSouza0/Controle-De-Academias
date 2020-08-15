@@ -289,3 +289,38 @@ tbody tr td:last-child a:hover,
 
 }
  
+/* Paginantion */
+
+.table{
+    display: grid;
+    grid-template: 64px 1fr 16px / 1fr;
+}
+
+.table .header {
+
+    margin:0;
+    align-self: start;
+}
+
+.pagination {
+
+    margin:0;
+    align-self: end;
+    justify-self: center;
+}
+
+.pagination a,
+.pagination span{
+
+    color: var(--second-color);
+    margin-right: 15px;
+    text-decoration: none;
+
+}
+.pagination a:hover{
+
+    filter: brightness(0.3);
+    border-bottom: 1px solid var(--second-color);
+}
+
+
