@@ -21,7 +21,10 @@ module.exports = {
     find(id, callBack) {
 
 
-        db.query('SELECT * FROM MEMBERS WHERE id = $1', [id], (err, results) => {
+        db.query(`SELECT members.*, instructors.name AS instructor_name
+            FROM members
+            LEFT JOIN instructors ON (members.instructor_id = instructors.id  )
+            WHERE members.id = $1`, [id], (err, results) => {
 
             if (err) {
 
@@ -45,8 +48,9 @@ module.exports = {
             blood,
             weight,
             height,
-            create_at
-        ) values ($1,$2, $3, $4, $5, $6, $7, $8, $9)
+            create_at,
+            instructor_id
+        ) values ($1,$2, $3, $4, $5, $6, $7, $8, $9,$10)
         RETURNING id
         `
         db.query(query, values, (err, result) => {
@@ -72,8 +76,7 @@ module.exports = {
         blood = ($6),
         weight = ($7),
         height = ($8),
-        create_at = ($9)
-
+        instructor_id = ($9)
         WHERE id = $10
         `
         db.query(query, data, (err, results) => {
@@ -96,6 +99,16 @@ module.exports = {
             callBack()
 
         })
-    }
+    },
+    instructorsSelectOptions(callBack){
+
+        db.query(`SELECT name, id FROM instructors`, (err,results)=>{
+
+            if(err) throw ('DataBase error' (err))
+
+            callBack(results.rows)
+        })
+
+    },
 
 }
