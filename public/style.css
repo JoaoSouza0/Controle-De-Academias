@@ -30,7 +30,7 @@ header, footer{
 }
 
 .links{
-    font-size: 16px;
+    font-size: 20px;
 }
 .links a +a { /*faz com que a propriedade seja colocada no "a" que 
                 tenha um outro "a" anterior a ele */
@@ -204,6 +204,11 @@ a.button{
 td, th{
     padding: 16px;
     border-bottom: 1px solid white;
+    
+}
+
+tr td:nth-child(3){
+text-align: center;
 }
 
 th {
@@ -243,7 +248,10 @@ tbody tr td:last-child a,
 
 }
 tbody tr td:last-child a:hover,
-.table > a:hover{
+.table > a:hover,
+.table .header a:hover,
+.table .header button:hover
+{
     color: white;
 }
 
@@ -252,3 +260,67 @@ tbody tr td:last-child a:hover,
     display: inline-block
 
 }
+
+/* FILTERS */
+
+.table .header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+}
+.table .header form {
+    display: grid;
+    grid-template-columns: 1fr 120px;
+    align-items: center;
+    gap: 10px;
+}
+.table .header a,
+.table .header button{
+    margin:0;
+    width: 120px;
+    font-size: 16px;
+}
+
+.table .header input{
+    box-sizing: border-box;
+    border: 1px solid var(--second-color);
+    border-radius: 5px;
+    padding: 6px 8px;
+
+}
+ 
+/* Paginantion */
+
+.table{
+    display: grid;
+    grid-template: 64px 1fr 16px / 1fr;
+}
+
+.table .header {
+
+    margin:0;
+    align-self: start;
+}
+
+.pagination {
+
+    margin:0;
+    align-self: end;
+    justify-self: center;
+}
+
+.pagination a,
+.pagination span{
+
+    color: var(--second-color);
+    margin-right: 15px;
+    text-decoration: none;
+
+}
+.pagination a:hover{
+
+    filter: brightness(0.3);
+    border-bottom: 1px solid var(--second-color);
+}
+
+

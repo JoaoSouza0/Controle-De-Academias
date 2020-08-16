@@ -1,21 +1,43 @@
 const { calcularIdade, calcularData, searchmember } = require('../../lib/logic')
-const member = require('../models/members')
+const Member = require('../models/members')
 
 //INDEX 
 
 module.exports = {
 
     index(req, res) {
+        let { filter, page , limit } = req.query
 
-        member.findAll((members) => {
-            return res.render('Members/index', { members })
-        })
+        page = page || 1
+        limit = limit || 2
 
+        let offset = limit * (page - 1)
+
+       const params = {
+           filter,
+           page,
+           limit,
+           offset,
+           callBack(members){
+
+               const pagination =  {
+                       total: Math.ceil(members[0].total/limit),
+                       page,
+               }
+
+               return res.render('Members/index', { members, filter, pagination })
+           }
+       }
+
+        Member.pagenate(params)
     },
 
     create(req, res) {
 
-        return res.render('Members/create') // rederizando pagina de criação de clientes
+        Member.instructorsSelectOptions((options) => {
+
+            return res.render('Members/create', { instructorOptions: options }) // rederizando pagina de criação de clientes
+        })
     },
     post(req, res) {
 
@@ -31,7 +53,7 @@ module.exports = {
                 return res.send('Por favor preencher todos os itens')
         }
 
-        let { avatarurl, nome, email, datanascimento, gender, blood, weight, height } = req.body
+        let { avatarurl, nome, email, datanascimento, gender, blood, weight, height, instructors } = req.body
 
 
         const values = [
@@ -44,16 +66,17 @@ module.exports = {
             weight,
             height,
             calcularData(Date.now()).iso,
+            instructors
         ]
 
-        member.post(values, (member) => {
+        Member.post(values, (member) => {
             return res.redirect(`Members/${member.id}`)
         })
 
     },
     show(req, res) {
 
-        member.find(req.params.id, (member) => {
+        Member.find(req.params.id, (member) => {
 
             if (!member) return res.send('member not find')
 
@@ -66,14 +89,18 @@ module.exports = {
     },
 
     edit(req, res) {
-        member.find(req.params.id, (member) => {
+        Member.find(req.params.id, (member) => {
 
             if (!member) return res.send('member not find')
 
             member.datanascimento = calcularData(member.datanascimento).iso
             member.created_at = calcularData(member.created_at).br
+            
+            Member.instructorsSelectOptions((options) => {
 
-            return res.render('members/edit', { member })
+                return res.render('Members/edit', { member, instructorOptions: options }) // rederizando pagina de criação de clientes
+            })
+
         })
     },
 
@@ -91,7 +118,7 @@ module.exports = {
                 return res.send('Por favor preencher todos os itens')
         }
 
-        let { avatarurl, nome, email, datanascimento, gender, blood, weight, height,id } = req.body
+        let { avatarurl, nome, email, datanascimento, gender, blood, weight, height, id, instructors } = req.body
 
 
         const values = [
@@ -103,11 +130,11 @@ module.exports = {
             blood,
             weight,
             height,
-            calcularData(Date.now()).iso,
+            instructors,
             id
         ]
 
-        member.update(values, () => {
+        Member.update(values, () => {
 
             return res.redirect(`Members/${req.body.id}`)
         })
@@ -117,7 +144,7 @@ module.exports = {
     },
 
     delete(req, res) {
-        member.delete(req.body.id, () => {
+        Member.delete(req.body.id, () => {
 
             return res.redirect(`/Members`)
         })

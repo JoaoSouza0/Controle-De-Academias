@@ -3,19 +3,34 @@
 {% block content %}
 
     <div class="card table">
-            
+        <div class="header">
+            <a class= "button"href="/instructors/create">Novo</a>
+            <form action="/instructors/" method="get">
+
+                <input type="text" name="filter" value= "{{filter}}"placeholder="Nome ou Atendimento">
+
+                <button type="submit">Filtrar</button>
+
+            </form>
+        </div>
+
         <table width="100%">
-            <a href="/instructors/create">Novo</a>
             <thead>
                 <tr>
                     <th>
 
                         Instrutor
                     </th>
+
                     <th>
 
                         Serviços
                     </th>
+
+                    <th>
+                        Total de Alunos
+                    </th>
+
                     <th>
                         Ação
                     </th>
@@ -26,23 +41,36 @@
 
                 {% for instrutor in instructors %}
                     <tr>
-                        
+
                         <td>
                             <span style="background-image: url({{instrutor.avatarurl}})"></span>
                             {{instrutor.name}}
                         </td>
 
                         <td>
-                             {{instrutor.services}}
+                            {{instrutor.services}}
+                        </td>
+
+                        <td>
+                            {{instrutor.total_students}}
                         </td>
                         <td>
-                                <a href="/Instructors/{{instrutor.id}}">Ver</a>
+                            <a href="/Instructors/{{instrutor.id}}">Ver</a>
                         </td>
                     </tr>
                     {%endfor%}
 
                 </tbody>
             </table>
+
+            <div class="pagination"
+                data-page={{pagination.page}} 
+                data-total={{pagination.total}}
+                data-filter={{filter}} 
+            >
+
+            </div>
+
         </div>
 
     {% endblock content %}
