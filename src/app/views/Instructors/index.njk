@@ -4,7 +4,7 @@
 
     <div class="card table">
         <div class="header">
-            <a class= "button"href="/members/create">Novo</a>
+            <a class= "button"href="/instructors/create">Novo</a>
             <form action="/instructors/" method="get">
 
                 <input type="text" name="filter" value= "{{filter}}"placeholder="Nome ou Atendimento">
@@ -62,6 +62,15 @@
 
                 </tbody>
             </table>
+
+            <div class="pagination"
+                data-page={{pagination.page}} 
+                data-total={{pagination.total}}
+                data-filter={{filter}} 
+            >
+
+            </div>
+
         </div>
 
     {% endblock content %}
