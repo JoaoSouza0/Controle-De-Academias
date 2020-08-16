@@ -1,5 +1,6 @@
 const db = require('../../config/db')
 const { calcularIdade, calcularData, searchInstructor } = require('../../lib/logic')
+const { off } = require('../../config/db')
 
 
 
@@ -41,7 +42,6 @@ module.exports = {
 
 })
     },
-
     find(id, callBack) {
 
 
@@ -122,6 +122,47 @@ module.exports = {
             callBack()
 
         })
+    },
+    pagenate(params)
+    {
+        const { filter, limit, offset, callBack} = params
+
+        let query = "",
+        filterQuery = "",
+        totalQuery =`(
+            SELECT count(*) FROM instructors
+        ) AS total
+        `
+
+        if(filter){
+
+            filterQuery = ` 
+                WHERE instructors.name ILIKE '%${filter}%'
+                OR instructors.services ILIKE '%${filter}%'
+            `
+
+            totalQuery = `(
+                SELECT count (*) FROM instructors
+            ${filterQuery}
+            ) AS total`
+
+        }
+
+        query = `SELECT instructors.*, ${totalQuery}, count(members) as total_students
+        FROM instructors
+        LEFT JOIN members ON (instructors.id = members.instructor_id)
+        ${filterQuery}
+        GROUP BY instructors.id LIMIT $1 OFFSET $2` 
+
+        db.query(query,[limit,offset], (err, result)=>{
+
+            if(err){
+                throw `Data base error ${err} `
+            }
+
+            callBack(result.rows)
+        })
+
     }
 
 }
