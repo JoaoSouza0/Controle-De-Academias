@@ -9,7 +9,6 @@
 ![Bitbucket open pull requests](https://img.shields.io/bitbucket/pr-raw/iuricode/README-template?style=for-the-badge) -->
 
 <img src="./public/img/ReadmeIMG.PNG" alt="img Project">
-<img src="./public/img/ReadmeIM2.PNG" alt="img Project">
 
 > Projeto desenvolvido desenvolvido para aprimorar a habilidade de criaçar sistemas web
 
