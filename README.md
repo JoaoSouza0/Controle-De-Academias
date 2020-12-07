@@ -9,7 +9,7 @@
 ![Bitbucket open pull requests](https://img.shields.io/bitbucket/pr-raw/iuricode/README-template?style=for-the-badge) -->
 
 <img src="./public/img/ReadmeIMG.PNG" alt="img Project">
-<img src="./public/img/ReadmeIM3.PNG" alt="img Project">
+<img src="./public/img/ReadmeIM2.PNG" alt="img Project">
 
 > Projeto desenvolvido desenvolvido para aprimorar a habilidade de criaçar sistemas web
 
@@ -26,12 +26,11 @@ Antes de começar, verifique se você atendeu aos seguintes requisitos:
 
 Para usar Gym Manager, siga estas etapas:
 
-```
 - Clonar o repositório 
 - Caso não tenha o banco de dados instalado digitar o comando no terminal **git checkout Versão-0.1**
 - Digitar o comando **npm i** para instalar as dependencias do projeto
 - Digitar o comando **npm start** para rodar o projeto
-```
+
 ## 📫 Contribuindo para Gym Manager
 <!---Se o seu README for longo ou se você tiver algum processo ou etapas específicas que deseja que os contribuidores sigam, considere a criação de um arquivo CONTRIBUTING.md separado--->
 Para contribuir com Gym Manager, siga estas etapas:
